@@ -15,15 +15,22 @@
 
 ## 安裝流程
 1. 將專案 git clone 至本地端
+
 `git clone https://github.com/rwoormip/restaurant_list.git`
 
 2. 開啟終端機 Terminal，使用指令`cd`移動至專案資料夾
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 `cd <本機的專案路徑>`
 
 3. 安裝需要的套件
+
 `npm install`
 
 4. 執行專案
+
 `npm run dev`
 
 5. 你可以在瀏覽器輸入 http://localhost:3000 瀏覽內容
