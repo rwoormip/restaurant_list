@@ -19,10 +19,7 @@
 `git clone https://github.com/rwoormip/restaurant_list.git`
 
 2. 開啟終端機 Terminal，使用指令`cd`移動至專案資料夾
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/main
 `cd <本機的專案路徑>`
 
 3. 安裝需要的套件
