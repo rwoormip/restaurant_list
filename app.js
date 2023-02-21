@@ -1,7 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
+const Restaurant = require('./models/restaurant')
+// const restaurantList = require('./restaurant.json')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -21,13 +22,16 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', 'hbs')
 
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
 })
 
 app.get('/search', (req, res) => {
