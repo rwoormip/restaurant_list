@@ -4,7 +4,7 @@
     <div class="search-bar-inner">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
+        <div class="input-group mb-3">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{ keyword }}" aria-describedby="search-button">
           <div class="input-group-append">
@@ -22,7 +22,7 @@
     <div class="col-md-10 col-12 mx-auto">
       <div class="row row-cols-sm-3">
         {{#each restaurants}}
-          <a href="/restaurants/{{ this.id }}" class="text-secondary">
+          <div class="col">
             <div class="card mb-3">
               <img class="card-img-top" src="{{ this.image }}"
                 alt="{{ this.name }}">
@@ -38,8 +38,11 @@
                 </span>
 
               </div>
+              <div class="card-footer d-flex justify-content-end flex-wrap">
+                <a href="/restaurants/{{ this._id }}" class="text-secondary">Details</a>
+              </div>
             </div>
-          </a>
+          </div>
         {{/each}}
       </div>
     </div>

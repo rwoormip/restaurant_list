@@ -1,14 +1,12 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-const app = express()
-const port = 3000
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true})
 
 const db = mongoose.connection
@@ -21,16 +19,18 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+const app = express()
+const port = 3000
+
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
-
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  Restaurant.find()
+  Restaurant.find({})
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
-    .catch(error => console.error(error))
+    .catch(error => console.log(error))
 })
 
 app.get('/search', (req, res) => {
@@ -43,15 +43,16 @@ app.get('/search', (req, res) => {
   if (restaurants.length === 0) {
     res.render('index', { restaurants: restaurantList.results, keyword: `${keyword} 搜尋無結果` })
   } else {
-    res.render('index', { restaurants: restaurants, keyword: keyword })
+    res.render('index', { restaurants, keyword })
   }
 })
 
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(
-    restaurant => restaurant.id.toString() === req.params.restaurant_id
-  )
-  res.render('show', { restaurant: restaurant })
+app.get('/restaurants/:restaurantId', (req, res) => {
+  const { restaurantId } = req.params
+  return Restaurant.findById(restaurantId)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {
