@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const Restaurant = require('./models/restaurant')
-// const restaurantList = require('./restaurant.json')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
