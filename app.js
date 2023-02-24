@@ -1,6 +1,7 @@
 const express = require('express')
-const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
 
 if (process.env.NODE_ENV !== 'production') {
@@ -24,6 +25,7 @@ const port = 3000
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
@@ -47,11 +49,21 @@ app.get('/search', (req, res) => {
   }
 })
 
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
 app.get('/restaurants/:restaurantId', (req, res) => {
   const { restaurantId } = req.params
   return Restaurant.findById(restaurantId)
     .lean()
-    .then((restaurant) => res.render('show', { restaurant }))
+    .then((restaurant) => res.render('detail', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants', (req, res) => {
+  return Restaurant.create(req.body)
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 

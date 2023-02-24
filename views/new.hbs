@@ -1,0 +1,71 @@
+<h1 class="mb-1 restaurant-show-title">新增餐廳</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 mx-auto">
+
+      <form action="/restaurants" method="POST">
+        <div class="row mb-3 g-2">
+          <label for="name" class="col-md-2 col-form-label">餐廳名稱：</label>
+          <input type="text" placeholder="餐廳名稱" name="name" class="form-control" id="name" required>
+        </div>
+        
+        <div class="row mb-3 g-2">
+          <label for="name_en" class="col-md-2 col-form-label">英文名稱：</label>
+          <input type="text" placeholder="English name" name="name_en" class="form-control" id="name_en" required>
+        </div>
+        
+        <div class="row mb-3 g-2">
+          <label for="category" class="col-md-2 col-form-label">類別：</label>
+          <input list="categorys" placeholder="選擇餐廳類型" class="form-control" name="category" id="category" required>
+          <datalist id="categorys">
+            <option>美式</option>
+            <option>咖啡</option>
+            <option>酒吧</option>
+            <option>中東料理</option>
+            <option>日本料理</option>
+            <option>義式餐廳</option>
+          </datalist>
+        </div>
+
+        <div class="row mb-3 g-2">
+          <label for="location" class="col-md-2 col-form-label">地址：</label>
+          <input type="text" placeholder="餐廳地址" name="location" class="form-control" id="location" required>
+        </div>
+
+        <div class="row mb-3 g-2">
+          <label for="phone" class="col-md-2 col-form-label">電話：</label>
+          <input type="tel" placeholder="02 2828 1258" name="phone" class="form-control" id="phone" required>
+        </div>
+
+        <div class="row mb-3 g-2">
+          <label for="rating" class="col-md-2 col-form-label">評分：</label>
+          <input type="number" placeholder="0到5分" name="rating" class="form-control" id="rating" required>
+        </div>
+
+        <div class="row mb-3 g-2">
+          <label for="description" class="col-md-2 col-form-label">資訊：</label>
+          <textarea type="text" placeholder="介紹您的餐廳" name="description" class="form-control" id="description" rows="3" required></textarea>
+        </div>
+        
+        <div class="row mb-3 g-2">
+          <label for="image" class="col-md-2 col-form-label">照片：</label>
+          <input type="url" placeholder="http://" name="image" class="form-control" id="image" required>
+        </div>
+        
+        <div class="row mb-3 g-2">
+          <label for="google_map" class="col-md-2 col-form-label">Google Map：</label>
+          <input type="url" placeholder="http://" name="google_map" class="form-control" id="google_map" required>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-major">新增</button>
+          <a href="/">
+            <button type="button" class="btn btn-outline-danger">返回首頁</button>
+          </a>
+          <button type="reset" class="btn btn-major">清除</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
