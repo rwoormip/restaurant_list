@@ -68,9 +68,9 @@ app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
-app.get('/restaurants/:restaurantId', (req, res) => {
-  const { restaurantId } = req.params
-  return Restaurant.findById(restaurantId)
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
     .lean()
     .then((restaurant) => res.render('detail', { restaurant }))
     .catch(error => console.log(error))
@@ -84,18 +84,18 @@ app.post('/restaurants', (req, res) => {
 
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  const restaurantEdit = req.body
+  const { name, name_en, category, location, phone, rating, description, image, google_map } = req.body
   return Restaurant.findById(id)
     .then(restaurant => {
-      restaurant.name = restaurantEdit.name
-      restaurant.name_en = restaurantEdit.name_en
-      restaurant.category = restaurantEdit.category
-      restaurant.location = restaurantEdit.location
-      restaurant.phone = restaurantEdit.phone
-      restaurant.rating = restaurantEdit.rating
-      restaurant.description = restaurantEdit.description
-      restaurant.image = restaurantEdit.image
-      restaurant.google_map = restaurantEdit.google_map
+      restaurant.name = name
+      restaurant.name_en = name_en
+      restaurant.category = category
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.rating = rating
+      restaurant.description = description
+      restaurant.image = image
+      restaurant.google_map = google_map
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))

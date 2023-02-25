@@ -11,7 +11,7 @@
 
         <div class="row mb-3 g-2">
           <label for="name_en" class="col-md-2 col-form-label">英文名稱：</label>
-          <input type="text" placeholder="{{ restaurant.name_en }}" name="name_en" value="{{ restaurant.name_en}}" class="form-control" id="name_en" required>
+          <input type="text" placeholder="{{ restaurant.name_en }}" name="name_en" value="{{ restaurant.name_en}}" class="form-control" id="name_en">
         </div>
 
         <div class="row mb-3 g-2">
@@ -34,28 +34,27 @@
 
         <div class="row mb-3 g-2">
           <label for="phone" class="col-md-2 col-form-label">電話：</label>
-          <input type="tel" placeholder="{{ restaurant.phone }}" name="phone" value="{{ restaurant.phone }}" class="form-control" id="phone" required>
+          <input type="tel" placeholder="{{ restaurant.phone }}" name="phone" value="{{ restaurant.phone }}" class="form-control" id="phone">
         </div>
 
         <div class="row mb-3 g-2">
           <label for="rating" class="col-md-2 col-form-label">評分：</label>
-          <input type="number" placeholder="{{ restaurant.rating }}" name="rating" min="0" max="5" step="0.1" value="{{ restaurant.rating }}" class="form-control" id="rating" required>
+          <input type="number" placeholder="{{ restaurant.rating }}" name="rating" min="0" max="5" step="0.1" value="{{ restaurant.rating }}" class="form-control" id="rating">
         </div>
 
         <div class="row mb-3 g-2">
           <label for="description" class="col-md-2 col-form-label">資訊：</label>
-          <textarea type="text" placeholder="{{ restaurant.description }}" name="description" class="form-control" id="description" rows="3"
-            required>{{ restaurant.description }}</textarea>
+          <textarea type="text" placeholder="{{ restaurant.description }}" name="description" class="form-control" id="description" rows="3">{{ restaurant.description }}</textarea>
         </div>
 
         <div class="row mb-3 g-2">
           <label for="image" class="col-md-2 col-form-label">照片：</label>
-          <input type="url" placeholder="{{ restaurant.image }}" name="image" value="{{ restaurant.image }}" class="form-control" id="image" required>
+          <input type="url" placeholder="{{ restaurant.image }}" name="image" value="{{ restaurant.image }}" class="form-control" id="image">
         </div>
 
         <div class="row mb-3 g-2">
           <label for="google_map" class="col-md-2 col-form-label">Google Map：</label>
-          <input type="url" placeholder="{{ restaurant.google_map }}" name="google_map" value="{{ restaurant.google_map }}" class="form-control" id="google_map" required>
+          <input type="url" placeholder="{{ restaurant.google_map }}" name="google_map" value="{{ restaurant.google_map }}" class="form-control" id="google_map">
         </div>
 
         <div class="text-center mb-3">
