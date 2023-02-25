@@ -1,33 +1,39 @@
 # 我的餐廳清單
-使用 Node.js + Express
+![image](./public/image/snapshot.png)
 
 ## 功能
-- 使用者可以在首頁瀏覽所有餐廳
-- 使用者可以點擊任一餐廳查看餐廳的詳細資訊
-- 使用者可以透過餐廳中、英文名稱、類別來搜尋餐廳
-
-## 環境建置
-- Node.js
-- Node Package manager (npm)
-- Nodemon
-- Express v4.18.2
-- Express-handlebars v3.0.0
+- 首頁瀏覽所有餐廳
+- 查看餐廳的詳細資訊
+- 搜尋餐廳
+- 新增餐廳
+- 修改餐廳
+- 刪除餐廳
 
 ## 安裝流程
 1. 將專案 git clone 至本地端
 
-`git clone https://github.com/rwoormip/restaurant_list.git`
-
-2. 開啟終端機 Terminal，使用指令`cd`移動至專案資料夾
-
-`cd <本機的專案路徑>`
+2. 開啟終端機移動至專案資料夾
 
 3. 安裝需要的套件
 
 `npm install`
 
-4. 執行專案
+4. 安裝完成後，執行專案
 
-`npm run dev`
+`npm run start`
 
-5. 你可以在瀏覽器輸入 http://localhost:3000 瀏覽內容
+5. 若出現此訊息表示執行順利，在瀏覽器輸入以下網址開始使用
+
+`App is running on http://localhost:3000
+mongodb connected!`
+
+6. 暫停使用的方法
+
+`ctrl + c`
+
+## 開發工具
+- Node.js
+- Express ^4.18.2
+- Express-handlebars ^3.0.0
+- MongoDB
+- mongoose ^5.13.15

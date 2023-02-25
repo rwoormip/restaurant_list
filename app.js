@@ -44,17 +44,24 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.trim()
-  const restaurants = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) ||
-      restaurant.name_en.toLowerCase().includes(keyword.toLowerCase()) ||
-      restaurant.category.includes(keyword)
-  })
-  if (restaurants.length === 0) {
-    res.render('index', { restaurants: restaurantList.results, keyword: `${keyword} 搜尋無結果` })
-  } else {
-    res.render('index', { restaurants, keyword })
+  const keywords = req.query.keywords.trim()
+  const keyword = keywords.toLowerCase()
+  
+  if (!keyword) {
+    return res.redirect('/')
   }
+
+  return Restaurant.find({})
+    .lean()
+    .then(restaurants => {
+      const filterRestaurants = restaurants.filter(
+        restaurant => restaurant.name.toLowerCase().includes(keyword) || 
+          restaurant.name_en.toLowerCase().includes(keyword) || 
+          restaurant.category.includes(keyword)
+      )
+      res.render('index', { restaurants: filterRestaurants, keywords })
+    })
+    .catch(error => console.log(error))
 })
 
 app.get('/restaurants/new', (req, res) => {
