@@ -30,8 +30,16 @@ app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   Restaurant.find({})
+  .lean()
+  .then(restaurants => res.render('index', { restaurants }))
+  .catch(error => console.log(error))
+})
+
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
     .lean()
-    .then(restaurants => res.render('index', { restaurants }))
+    .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
 
@@ -64,6 +72,26 @@ app.get('/restaurants/:restaurantId', (req, res) => {
 app.post('/restaurants', (req, res) => {
   return Restaurant.create(req.body)
     .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const restaurantEdit = req.body
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = restaurantEdit.name
+      restaurant.name_en = restaurantEdit.name_en
+      restaurant.category = restaurantEdit.category
+      restaurant.location = restaurantEdit.location
+      restaurant.phone = restaurantEdit.phone
+      restaurant.rating = restaurantEdit.rating
+      restaurant.description = restaurantEdit.description
+      restaurant.image = restaurantEdit.image
+      restaurant.google_map = restaurantEdit.google_map
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
 
