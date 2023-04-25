@@ -2,56 +2,78 @@
 ![image](./public/image/snapshot.png)
 
 ## 功能
-- 瀏覽所有餐廳
-- 查看餐廳的詳細資訊
-- 連結餐廳地址到 Google 地圖
-- 搜尋餐廳
-- 新增餐廳
-- 修改餐廳
-- 刪除餐廳
+- 使用者可以瀏覽所有餐廳
+- 使用者可以查看餐廳的詳細資訊
+- 使用者可以連結餐廳地址到 Google 地圖
+- 使用者可以搜尋餐廳
+- 使用者可以新增餐廳
+- 使用者可以修改餐廳的資訊
+- 使用者可以刪除餐廳
+- 使用者可以註冊帳號、登入及登出
+- 使用者可以使用 Facebook Login
 
-## 開始使用
+## 安裝與執行步驟
 1. 請先確認本地端有安裝 Node.js 及 npm
 
 2. 將專案 git clone 至本地端
+
+`git clone https://github.com/rwoormip/restaurant_list`
 
 3. 開啟終端機移動至專案資料夾
 
 `cd <專案資料夾位置>`
 
-4. 安裝需要的套件
+4. 安裝npm套件
 
 `npm install`
 
-5. 安裝完成後，設定環境變數，連線 MongoDB
+5. 安裝nodemon (如果已有可跳過)
+
+`npm install –g nodemon`
+
+6. 安裝完成後，設定環境變數，連線 MongoDB
 
 `MONGODB_URI=mongodb+srv://<Your MongoDB Account>:<Your MongoDB Password>@cluster0.xxxx.xxxx.net/<Your MongoDB Table>?retryWrites=true&w=majority`
 
-6. 執行專案
+7. 製作種子資料 (預設會建立 2 位使用者、 6 間餐廳到資料庫中)
+`npm run seed`
 
-`npm run start`
+8. 製作 .env檔案，可以參考 .env.example
+`FACEBOOK_ID=
+FACEBOOK_SECRET=
+FACEBOOK_CALLBACK=
+SESSION_SECRET=
+MONGODB_URI=
+PORT=`
 
-7. 若出現此訊息表示執行順利，在瀏覽器輸入以下網址開始使用
+9. 啟動伺服器 (使用 nodemon 執行專案)
+
+`npm run dev`
+
+10. 若出現此訊息表示執行順利，在瀏覽器輸入以下網址開始使用
 
 `App is running on http://localhost:3000
 mongodb connected!`
 
-8. 如果要暫停使用，請在終端機輸入以下指令，並關閉瀏覽器
+11. 如果要暫停使用，請在終端機輸入以下指令
 
 `ctrl + c`
 
-9. 如有需要生成種子資料請輸入以下指令
-
-`npm run seed`
-
 ## 開發工具
-- Node.js ^14.16.0
-- Nodemon
-- Express ^4.18.2
-- Express-handlebars ^3.0.0
+- Node.js : “^14.16.0”
 - MongoDB
-- mongoose ^5.13.15
-- dotenv ^16.0.3
-- method-override ^3.0.0
+- Nodemon
+- Express : “^4.18.2"
+- Express-handlebars : “^7.0.7”
+- Express-session : “^1.17.3”
+- Body-parser : “^1.20.2”
+- Bcryptjs : “^2.4.3”
+- Connect-flash : “^0.1.1”
+- Mongoose : “^5.13.15”
+- Dotenv : “^16.0.3”
+- method-override : “^3.0.0”
+- Passport : “^0.6.0”
+- Passport-facebook : “^3.0.0”
+- Passport-local : “^1.0.0”
 - Bootstrap
 - Font-awesome
